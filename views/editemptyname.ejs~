@@ -1,0 +1,6 @@
+<html>
+	<body>
+			<label>Name can not empty</label>
+			<a href="/edit?id=<%=id%>">Go back</a>
+	</body>
+</html>

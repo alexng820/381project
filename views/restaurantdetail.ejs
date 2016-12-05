@@ -1,0 +1,50 @@
+<html>
+  <head> 
+	<link rel="stylesheet" type="text/css" href="layout.css">
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript">
+            var loadMap = function() 
+            {
+				var myLatLng = {lat: <%=restaurant.lat%>, lng: <%=restaurant.lon%>};
+                var map = new google.maps.Map(document.getElementById("map"),{
+				      zoom: 100,
+				      center: myLatLng
+				}); 
+				var map = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					title: '<%=restaurant.name%>'
+				});
+            };
+            window.onload= loadMap;
+        </script>
+  </head>
+  <body>
+	<% if(imgsrc!="0"){ %>
+	<img src="<%=imgsrc%>"  height="100" width="200"> <br/>
+	<% } %>
+	Name : <%=restaurant.name%><br/>
+	Borough : <%=restaurant.borough%><br/>
+	Cuisine : <%=restaurant.cuisine%><br/>
+	Street : <%=restaurant.street%><br/>
+	Building : <%=restaurant.building%><br/>
+	ZipCode : <%=restaurant.zipcode%><br/>
+	GPS Coordinates (lon.) : <%=restaurant.lon%><br/>
+	GPS Coordinates (lat.) : <%=restaurant.lat%><br/>
+	Create By : <%=restaurant.createby%><br/>
+	<% if(restaurant.rate!=null){ %>
+	Rate:<br/>
+	<% for(var i = 0; i < restaurant.rate.length; i++){ %>
+	      <li><%=restaurant.rate[i].score %> By <%= restaurant.rate[i].by %></a></li>
+	<% }} %>
+	<% if(restaurant.lon!=""&&restaurant.lat!=""){ %>
+	<aside>
+        	<div id="map" style="width:500px;height:500px;">
+	</aside>
+	<% } %>
+	<a href="./rate?id=<%=restaurant._id%>">Rate</a>
+	<a href="./edit?id=<%=restaurant._id%>">Edit</a>
+	<a href="./delete?id=<%=restaurant._id%>">Delete</a>
+	<a href="./">Go Back</a>
+  </body>
+</html>

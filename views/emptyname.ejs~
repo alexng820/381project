@@ -1,0 +1,6 @@
+<html>
+	<body>
+			<label>Name can not empty</label>
+			<a href="/new">Go back</a>
+	</body>
+</html>
